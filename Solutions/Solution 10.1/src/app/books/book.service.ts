@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import Book from './../models/Book.model';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
 @Injectable()

@@ -4,28 +4,7 @@ import Book from './../models/Book.model';
 
 @Component({
     selector: 'book-form',
-    template: `<form class="form-group form-inline col-sm-offset-1" novalidate [formGroup]="bookForm" (ngSubmit)="add()">
-                <label class="control-label">Title:
-                <input type="text" class="form-control" formControlName="title" /></label>
-		        <label class="control-label">Author:
-                <input type="text" class="form-control" formControlName="author" /></label>
-                <div class="form-group form-inline" >
-                    <img  src="{{cover | noImage}}"  bkDragDrop (onDropped)="onDrop($event)" />
-                </div> 
-      		    <button type="submit" class="btn btn-primary"  [disabled]="!bookForm.valid">Add Book</button>             
-                <div *ngIf="bookForm.get('title').hasError('required') && !bookForm.get('title').pristine" class="alert alert-danger">
-                    Title is required
-                </div>
-                <div *ngIf="bookForm.get('title').hasError('minlength') && !bookForm.get('author').pristine && !bookForm.get('title').pristine" class="alert alert-danger">
-                    Title must be at least 3 characters
-                </div> 
-                <div *ngIf="bookForm.get('title').hasError('pattern') && !bookForm.get('title').pristine" class="alert alert-danger">
-                    Only letters and numbers are allowed
-                </div>               
-                <div *ngIf="bookForm.get('author').hasError('required') && !bookForm.get('author').pristine" class="alert alert-danger">
-                    Author is required
-                </div>
-               </form>`
+    templateUrl: './book-form.component.html'
 })
 export class BookFormComponent implements OnInit, OnDestroy {
 
@@ -33,34 +12,33 @@ export class BookFormComponent implements OnInit, OnDestroy {
     sub: any;
     bookForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder) {    }
+    constructor(private formBuilder: FormBuilder) { }
 
     ngOnInit() {
         this.bookForm = this.formBuilder.group({
-            title:  ["", Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z0-9 ]*$")])],
+            title: ["", Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z0-9 ]*$")])],
             author: ["", Validators.required]
         });
 
         this.sub = this.bookForm.valueChanges
             .subscribe((value) => {
                 value.title = this.toTitleCase(value.title);
-                this.bookForm.patchValue({title: value.title}, { emitEvent: false });
+                this.bookForm.patchValue({ title: value.title }, { emitEvent: false });
                 //debug code
                 // console.log("Form  value = ", value);
             });
-
     }
 
     ngOnDestroy() {
-         this.sub.unsubscribe();
+        this.sub.unsubscribe();
     }
 
-    @Output() createBook  = new EventEmitter();
+    @Output() createBook = new EventEmitter();
 
     add() {
-        this.createBook.emit(new Book(this.bookForm.get('title').value, 
-                                      this.bookForm.get('author').value, 
-                                      this.cover, -1));
+        this.createBook.emit(new Book(this.bookForm.get('title').value,
+            this.bookForm.get('author').value,
+            this.cover, -1));
         this.bookForm.reset();
         this.cover = '';
     }
@@ -74,7 +52,7 @@ export class BookFormComponent implements OnInit, OnDestroy {
         });
     }
 
- onDrop(e: any) {
+    onDrop(e: any) {
         let comp = this;
         let size: number = 160;
         let oldHeight: number;
@@ -108,7 +86,7 @@ export class BookFormComponent implements OnInit, OnDestroy {
                         canvas.height = newHeight;
                         ctx.drawImage(image, 0, 0, newWidth, newHeight);
                         //your code here        
-                       comp.cover = canvas.toDataURL(f.type);
+                        comp.cover = canvas.toDataURL(f.type);
                     };
                     image.src = e2.target.result;
                 };
@@ -116,7 +94,5 @@ export class BookFormComponent implements OnInit, OnDestroy {
             reader.readAsDataURL(f);
         }
     }
-
-
 
 }

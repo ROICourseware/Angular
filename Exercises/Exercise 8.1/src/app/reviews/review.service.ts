@@ -8,7 +8,9 @@ import { Http, Headers } from '@angular/http';
 export class ReviewService {
 
     constructor(private http: Http, private restHelper : RestHelperService) { }
+    
 
+    private url: string = "http://localhost:3000/api/bookreactions/";
 
     getReviews(bookId: number) {
         return this.http.get(this.restHelper.url + "Reviews/" + bookId)

@@ -2,14 +2,15 @@ import { RestHelperService } from './../common/rest-helper.service';
 import { Injectable } from '@angular/core';
 import Review from './../models/Review.model';
 import { Http, Headers } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 
 
 @Injectable()
 export class ReviewService {
 
     constructor(private http: Http, private restHelper : RestHelperService) { }
+    
 
+    private url: string = "http://localhost:3000/api/bookreactions/";
 
     getReviews(bookId: number) {
         return this.http.get(this.restHelper.url + "Reviews/" + bookId)

@@ -18,7 +18,7 @@ export class BookService {
         return this.http.get(this.url + "Book/" + bookId)
             .toPromise().then(res => res.json() as Book).catch(this.handleError);
     }
-    
+
     addBook(book: Book) {
         let headers = new Headers({
             'content-type': 'application/json'

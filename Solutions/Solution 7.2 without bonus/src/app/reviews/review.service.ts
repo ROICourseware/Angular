@@ -15,8 +15,6 @@ export class ReviewService {
             .toPromise().then(res => res.json()).catch(this.handleError);
     }
 
-
-
     private handleError(error: any) {
         let err = error.message ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         return Promise.reject(err);

@@ -3,14 +3,9 @@ import Book from './../models/Book.model';
 
 @Component({
     selector: 'book-form',
-    template: `<div>
-                Title:<input type="text" [(ngModel)]="book.title" />
-		        Author:<input type="text" [(ngModel)]="book.author" />
-      		    <button type="button" (click)="add()">Add Book</button>
-                </div>`
+    templateUrl: './book-form.component.html'
 })
 export class BookFormComponent {
-
 
 private book: Book = new Book("","","", -1);
 

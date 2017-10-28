@@ -4,25 +4,7 @@ import Review from '../models/Review.model';
 
 @Component({
     selector: 'review-list',
-    template: `<div class="container-fluid mainPanel">
-                <div class="row">
-                    <h2 class="col-sm-offset-1">Reviews for {{bookId}}</h2>
-                    <div class="col-lg-8 col-sm-offset-1">
-                        <table class="table table-border table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Review</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let review of reviews">
-                                      <td>{{review.content}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-              </div>`
+    templateUrl: './review-list.component.html'
 }) 
 export class ReviewListComponent implements OnInit {
     

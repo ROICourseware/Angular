@@ -3,6 +3,8 @@ import { RestHelperService } from './../common/rest-helper.service';
 import { Injectable } from '@angular/core';
 import Book from './../models/Book.model';
 import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class BookService {

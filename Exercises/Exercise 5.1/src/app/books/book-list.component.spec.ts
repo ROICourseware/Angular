@@ -19,7 +19,7 @@ describe('BookList', () => {
       imports:      [ FormsModule ],
       declarations: [BookListComponent, BookFormComponent]
     });
-    //
+    //bonus
     fixture = TestBed.createComponent(BookListComponent);
     comp = fixture.componentInstance; 
     dbElm = fixture.debugElement.query(By.css('div'));
