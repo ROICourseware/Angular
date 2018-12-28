@@ -1,0 +1,26 @@
+<form class="form-inline" novalidate [formGroup]="bookForm" (ngSubmit)="add()">
+    <div class="form-group">
+  <label class="control-label">Title:
+  <input type="text" class="form-control" formControlName="title" /></label>
+<label class="control-label">Author:
+  <input type="text" class="form-control" formControlName="author" /></label>
+  <div>
+    <img  src="{{cover | noImage}}"  appDragAndDrop (onDropped)="onDrop($event)" />
+</div> 
+
+
+<button type="submit" class="btn btn-primary"  [disabled]="!bookForm.valid">Add Book</button>   
+</div>         
+  <div *ngIf="bookForm.get('title').hasError('required') && !bookForm.get('title').pristine" class="alert alert-danger">
+      Title is required
+  </div>
+  <div *ngIf="bookForm.get('title').hasError('minlength') && !bookForm.get('title').pristine" class="alert alert-danger">
+      Title must be at least 3 characters 
+  </div> 
+  <div *ngIf="bookForm.get('title').hasError('pattern') && !bookForm.get('title').pristine" class="alert alert-danger">
+      Only letters and numbers are allowed
+  </div>               
+  <div *ngIf="bookForm.get('author').hasError('required') && !bookForm.get('author').pristine" class="alert alert-danger">
+      Author is required
+  </div>
+ </form>

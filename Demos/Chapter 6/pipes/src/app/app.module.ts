@@ -1,19 +1,22 @@
-import { ReversePipe } from './reverse.pipe';
-import { CountryModule } from './countries/country.module';
-import { AppRoutesModule } from './app-routes.module';
+import { CountriesModule } from './countries/countries.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { AboutComponent } from './about.component';
 
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ReversePipe } from './reverse.pipe';
 
 @NgModule({
-  imports: [
-    BrowserModule, CountryModule, AppRoutesModule
-  ],
   declarations: [
-    AppComponent, AboutComponent, ReversePipe
+    AppComponent,
+    ReversePipe
   ],
-  bootstrap: [ AppComponent ]
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CountriesModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

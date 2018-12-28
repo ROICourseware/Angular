@@ -1,0 +1,21 @@
+<h1>Reviews for {{book?.title}}</h1>
+<app-review-form (createReview)="addReview($event)"  [bookId]="bookId"></app-review-form>
+<div *ngIf="errorMessage" class="alert alert-danger">
+  Sorry, there's been an error communicating with the server: {{errorMessage}}
+</div> 
+<div class="row">
+  <div class="col-lg-8 col-sm-offset-1">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Review</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let review of reviews">
+          <td>{{review.content}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

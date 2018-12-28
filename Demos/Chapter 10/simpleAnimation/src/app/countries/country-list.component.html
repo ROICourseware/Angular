@@ -1,0 +1,24 @@
+<div>
+  <div class="row">
+      <h2 class="col-sm-offset-1">Countries</h2>
+      <div class="col-lg-8 col-sm-offset-1">
+          <table class="table table-bordered table-striped">
+              <thead>
+                  <tr>
+                      <th>Click on a Country<br>
+                          Then on a second country...</th>
+                      <th>Language</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let country of countries; trackBy:trackCountry">
+                    <td [@selectedState]="country.selectedState" (click)="selectMe(country)">
+                  {{country.name}} 
+                   </td>
+                    <td>{{country.language}}</td>
+                </tr>       
+            </tbody>
+          </table>
+      </div>
+  </div>
+</div>

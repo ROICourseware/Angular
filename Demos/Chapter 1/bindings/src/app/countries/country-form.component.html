@@ -1,0 +1,5 @@
+Country:
+<input type="text" required name="name" #name="ngModel" [(ngModel)]="country.name" />
+<button [disabled]="!name.valid" (click)="submit()">
+  {{ actionName }} Country
+</button>

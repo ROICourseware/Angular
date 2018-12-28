@@ -1,32 +1,23 @@
-import Book from './models/Book.model';
 import { Component } from '@angular/core';
-import '../../public/css/bootstrap.min.css';
-import '../../public/css/styles.css';
-
 
 @Component({
-  selector: 'my-app',
-  template: `<h1>Welcome to {{name}}</h1>
-             <div class="row navbar navbar-default">
-                 <ul class="nav navbar-nav">
-                    <li>
-                      <a  routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">home</a>
-                    </li>
-                    <li>
-                      <a  routerLink="/about" routerLinkActive="active">about</a>
-                    </li>
-                    <li>
-                      <a routerLink="/countries" routerLinkActive="active">countries</a>
-                    </li>
-                 </ul>
-             </div>
-             <div class="container-fluid">
-                  <router-outlet></router-outlet>
-             </div>`,
-    styles: ['.active { font-weight: bold; border: 1px solid black }']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent  { 
-  name = 'Angles On Books';
- }
+export class AppComponent {
+  title = 'Pipes';
 
 
+  demo: any = {
+    myDate: new Date(),
+    lowerCaseText: "i was originally in lowercase",
+    upperCaseText: "I WAS ORIGINALLY IN UPPERCASE",
+    mixedCaseText: "I was originally in  Mixed Case",
+    myNumber: 0.427,
+    myLargeNumber: 365
+}
+
+
+
+}
