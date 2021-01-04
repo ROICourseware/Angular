@@ -1,5 +1,5 @@
 <h1>Books</h1>
-<app-book-form (createBook)="addBook($event)"> </app-book-form>
+<app-book-form (createBook)="addBook($event)"></app-book-form>
 <div *ngIf="errorMessage" class="alert alert-danger">
     Sorry, there's been an error communicating with the server: {{errorMessage}}
 </div> 
@@ -15,11 +15,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let book of books; trackBy:trackBook">
-                    <td>
-                        <a [routerLink]="['/reviews/' + book.bookId]"> {{book.title}}</a>
-                        </td>
+                    <td><a [routerLink]="['/reviews/' + book.bookId]"> {{book.title}}</a></td>
                     <td>{{book.author}}</td>
-                    <td><img  src="{{book.cover | noImage}}" alt="{{book.title + ' book cover'}}" /></td>
+                    <td><img  src="{{book.cover | noImage}}"   alt="{{book.title + ' book cover'}}" /></td>
+               
                 </tr>
             </tbody>
         </table>

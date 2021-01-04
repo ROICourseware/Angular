@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,8 +16,9 @@ import { ReviewsModule } from './reviews/reviews.module';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     BooksModule,
     ReviewsModule
   ],

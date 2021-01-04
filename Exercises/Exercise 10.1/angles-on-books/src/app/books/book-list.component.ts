@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Book } from '../models/book';
 import { BookService } from './book.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Book } from '../models/book';
 import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
-
+import { catchError, debounceTime } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-book-list',
@@ -12,37 +12,48 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class BookListComponent implements OnInit, OnDestroy {
 
-  books: Book[];
-  errorMessage: string;
-  searchField: FormControl = new FormControl();
+  books$!: Observable<Book[]>;
+  errorMessage = '';
   sub: any;
+  searchField: FormControl = new FormControl();
+
+  getBooks(term: string = ''): void {
+    this.books$ = this.bookService.getBooksByTitle(term)
+    .pipe(
+      catchError(error => {
+          if (error.error instanceof ErrorEvent) {
+              this.errorMessage = `Error: ${error.error.message}`;
+          } else {
+              this.errorMessage = `Error: ${error.message}`;
+          }
+          return of([]);
+      })
+    );
+  }
 
   constructor(private bookService: BookService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getBooks();
     this.sub = this.searchField.valueChanges.pipe(
       debounceTime(500)).subscribe(term => {
         this.getBooks(term);
-      });
+      },
+      err => this.errorMessage = err);
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
-  addBook(book: Book) {
-    this.bookService.addBook(book).then(() => { 
-      this.searchField.setValue(''); 
-    }).catch(error => this.errorMessage = error);
-  }
-
   trackBook(i: number, book: Book): number {
     return book.bookId;
   }
 
-  getBooks(term: string = '') {
-    this.bookService.getBooksByTitle(term).then(books => this.books = books).catch(error => this.errorMessage = error);
+  addBook(book: Book): void {
+    this.bookService.addBook(book).then(() => {
+      this.getBooks();
+     }).catch(error => this.errorMessage = error);
   }
 
 }

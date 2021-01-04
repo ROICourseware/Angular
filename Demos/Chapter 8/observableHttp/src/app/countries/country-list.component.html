@@ -1,0 +1,21 @@
+
+
+       <div class="col-lg-8 col-sm-offset-1">
+           <table class="table table-bordered table-striped">
+               <thead>
+                   <tr>
+                       <th>Country</th>
+                       <th>Language</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr *ngFor="let country of countries$ | async; trackBy:trackCountry">
+                       <td>
+                        {{country.name}}
+                      </td>
+                       <td>{{country.language}}</td>
+                   </tr>       
+               </tbody>
+           </table>
+       </div>
+ 

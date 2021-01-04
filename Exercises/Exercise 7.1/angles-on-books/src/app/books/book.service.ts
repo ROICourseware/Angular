@@ -8,23 +8,24 @@ export class BookService {
 
   constructor() { }
 
-  getBooks() {
+  getBooks(): Promise<Book[]> {
     return Promise.resolve(books);
   }
 
-  addBook(book: Book) {
+  addBook(book: Book): void {
     books.push(book);
   }
+
 }
 
 const books: Book[] = [{
-  title: "The Lord Of The Rings",
-  author: "J R R Tolkien",
-  cover: "",
+  title: 'The Lord Of The Rings',
+  author: 'J R R Tolkien',
+  cover: '',
   bookId: 1
 }, {
-  title: "The Hobbit",
-  author: "J R R Tolkien",
-  cover: "",
+  title: 'The Hobbit',
+  author: 'J R R Tolkien',
+  cover: '',
   bookId: 2
 }];

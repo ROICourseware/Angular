@@ -8,5 +8,5 @@ import { Book } from './models/book';
 })
 export class AppComponent {
   title = 'Angles On Books';
- 
+
 }

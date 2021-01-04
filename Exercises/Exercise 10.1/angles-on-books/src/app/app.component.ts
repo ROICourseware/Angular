@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Book } from './models/book';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,5 @@ import { Book } from './models/book';
 })
 export class AppComponent {
   title = 'Angles On Books';
- 
+
 }

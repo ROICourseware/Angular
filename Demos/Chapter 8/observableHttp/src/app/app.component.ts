@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Book } from './models/book';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +6,5 @@ import { Book } from './models/book';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Observable HTTP';
- 
+  title = 'bindings';
 }

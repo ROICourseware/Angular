@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Book } from '../models/book';
 import { BookService } from './book.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Book } from '../models/book';
 
 @Component({
   selector: 'app-book-list',
@@ -9,22 +9,26 @@ import { BookService } from './book.service';
 })
 export class BookListComponent implements OnInit {
 
+  books: Book[] = [];
 
-  books: Book[];
+  getBooks(): void {
+    this.bookService.getBooks()
+      .then(books => this.books = books);
+  }
 
   constructor(private bookService: BookService) { }
 
-  ngOnInit() {
-    this.bookService.getBooks()
-    .then(books => this.books = books);
-  }
-
-  addBook(book: Book) {
-    this.bookService.addBook(book);
+  ngOnInit(): void {
+    this.getBooks();
   }
 
   trackBook(i: number, book: Book): number {
     return book.bookId;
+  }
+
+  addBook(book: Book): void {
+    this.bookService.addBook(book);
+    this.getBooks();
   }
 
 }

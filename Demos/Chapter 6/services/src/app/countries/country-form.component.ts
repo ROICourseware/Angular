@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CountriesService } from './countries.service';
+import { CountryService } from './country.service';
 
 @Component({
   selector: 'app-country-form',
@@ -8,15 +8,14 @@ import { CountriesService } from './countries.service';
 })
 export class CountryFormComponent implements OnInit {
 
-  constructor(private countriesService: CountriesService) {}
+  constructor(private countriesService: CountryService) {}
 
-  country: any= {name: "", language: "", countryId: -1 } ;
-  
-  submit() {
+  country: any = {name: '', language: '', countryId: -1 } ;
+
+  submit(): void {
       this.countriesService.addCountry(this.country);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
-
 }

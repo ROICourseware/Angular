@@ -7,16 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountryFormComponent implements OnInit {
 
+  actionName = 'Add';
+  country: any = { name: 'England' };
+  countries: any[] = [{ name: 'Wales' }];
+
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  actionName: string = "Add";
-  country: any = { name: "England" };
-
-  submit() {
-    console.log(this.country);
+  submit(): void {
+    this.countries.push( { name: this.country.name });
   }
 
 }

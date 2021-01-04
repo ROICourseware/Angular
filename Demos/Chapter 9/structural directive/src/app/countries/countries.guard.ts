@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CountriesGuard implements CanActivate {
 
   constructor(private router: Router) {}
-  
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

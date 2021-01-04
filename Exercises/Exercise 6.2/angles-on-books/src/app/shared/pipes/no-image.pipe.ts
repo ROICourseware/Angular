@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NoImagePipe implements PipeTransform {
 
-  transform(value: string, defaultImage: string): string {
-    defaultImage = defaultImage ? defaultImage: '/assets/images/NoImage.png';
+  transform(value: string, defaultImage: string = '/assets/images/NoImage.png'): string {
     return value ? value : defaultImage;
   }
+
 }

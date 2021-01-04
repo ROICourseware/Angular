@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CountriesService } from './countries.service';
+import { CountryService } from './country.service';
 
 @Component({
   selector: 'app-country-list',
@@ -8,19 +8,16 @@ import { CountriesService } from './countries.service';
 })
 export class CountryListComponent implements OnInit {
 
-    countries: any[] 
+  countries!: any[];
 
-    constructor(private countryService: CountriesService) {}
+  constructor(private countryService: CountryService) { }
 
-    ngOnInit() {
-         this.countryService.getCountries().then(countries => this.countries = countries);
-    }
-
-    trackCountry(i: number, country: any): number {
-        return country.id;
-    }
+  ngOnInit(): void {
+    this.countryService.getCountries().then(countries => this.countries = countries);
+  }
 
 
-
-
+  trackCountry(i: number, country: any): number {
+    return country.id;
+  }
 }

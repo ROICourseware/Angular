@@ -9,15 +9,16 @@ import { Book } from '../models/book';
 export class BookListComponent implements OnInit {
 
   book: Book = {
-    title: "The Lord Of The Rings",
-    author: "J R R Tolkien" ,
-    cover: "",
+    title: 'The Lord Of The Rings',
+    author: 'J R R Tolkien' ,
+    cover: '',
     bookId: 1
-  };  
+  };
+
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

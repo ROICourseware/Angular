@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Book } from '../models/book';
 
 @Component({
@@ -8,17 +8,19 @@ import { Book } from '../models/book';
 })
 export class BookFormComponent implements OnInit {
 
-  book: Book = new Book("","","", -1);
-  @Output() createBook  = new EventEmitter();
+  book: Book = new Book('', '', '', -1);
+  @Output()
+  createBook  = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  add() {
+  add(): void {
     this.createBook.emit(this.book);
-    this.book = new Book("","","", -1);
+    this.book = new Book('', '', '', -1);
   }
+
 
 }

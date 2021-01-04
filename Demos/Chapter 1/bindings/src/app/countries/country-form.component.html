@@ -1,5 +1,14 @@
 Country:
-<input type="text" required name="name" #name="ngModel" [(ngModel)]="country.name" />
-<button [disabled]="!name.valid" (click)="submit()">
+<input type="text" required countryName="name" #countryName="ngModel" [(ngModel)]="country.name" />
+<button [disabled]="!countryName.valid" (click)="submit()">
   {{ actionName }} Country
 </button>
+<br>
+<p>
+    country = {{ country.name }}
+</p>
+<ul>
+    <li *ngFor="let c of countries">
+        {{c.name}}
+    </li>
+</ul>

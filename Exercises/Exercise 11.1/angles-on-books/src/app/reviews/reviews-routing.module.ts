@@ -8,6 +8,7 @@ const routes: Routes = [{
   data: { animation: 'reviewPage'}
 }];
 
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

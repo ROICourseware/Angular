@@ -3,20 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BooksModule } from './books/books.module';
-import { AboutComponent } from './about.component';
-import { ReviewsModule } from './reviews/reviews.module';
+import { CountriesModule } from './countries/countries.module';
+import { StandardPipesComponent } from './pipes/standard-pipes.component';
+import { ReversePipe } from './reverse.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent
+    StandardPipesComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BooksModule,
-    ReviewsModule
+    CountriesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,41 +1,45 @@
+
     // step 1: alias the component this to a variable comp
-		let size: number = 160;
-        let oldHeight: number;
-        let oldWidth: number;
-        let newHeight: number;
-        let newWidth: number;
-        let files = e.target.files || e.dataTransfer.files;
-        if (files && files.length > 0) {
-            let f = files[0];
-            let reader = new FileReader();
-            reader.onload = (function (f) {
-                return function (e2: any) {
-                    let image: HTMLImageElement = new Image();
-                    image.onload = function () {
-                        oldHeight = (<HTMLImageElement>this).height;
-                        oldWidth = (<HTMLImageElement>this).width;
-                        newHeight = oldHeight;
-                        newWidth = oldWidth;
-                        if (oldHeight > size) {
-                            newHeight = size;
-                            newWidth = (newHeight * oldWidth) / oldHeight;
-                        }
-                        if (newWidth > size) {
-                            let oldWidth = newWidth;
-                            newWidth = size;
-                            newHeight = (newWidth * newHeight) / oldWidth;
-                        }
-                        let canvas = document.createElement("canvas");
-                        let ctx = canvas.getContext("2d");
-                        canvas.width = newWidth;
-                        canvas.height = newHeight;
-                        ctx.drawImage(image, 0, 0, newWidth, newHeight);
-                     // step 2:  retrieve a base64 encoded version of the image
-                    // and assign it to the component's cover property   
-                       
-                    };
-                    image.src = e2.target.result;
-                };
-            })(f);
-            reader.readAsDataURL(f);
-        }
+
+    const size = 160;
+    let oldHeight: number;
+    let oldWidth: number;
+    let newHeight: number;
+    let newWidth: number;
+    const files = e.target.files || e.dataTransfer.files;
+    if (files && files.length > 0) {
+      const f = files[0];
+      const reader = new FileReader();
+      reader.onload = ((file): any => {
+        return (e2: any): any => {
+          const image: HTMLImageElement = new Image();
+          image.onload = function(): void {
+            oldHeight = (this as HTMLImageElement).height;
+            oldWidth = (this as HTMLImageElement).width;
+            newHeight = oldHeight;
+            newWidth = oldWidth;
+            if (oldHeight > size) {
+              newHeight = size;
+              newWidth = (newHeight * oldWidth) / oldHeight;
+            }
+            if (newWidth > size) {
+              oldWidth = newWidth;
+              newWidth = size;
+              newHeight = (newWidth * newHeight) / oldWidth;
+            }
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+            if (ctx) {
+              ctx.drawImage(image, 0, 0, newWidth, newHeight);
+            }
+            // step 2:  retrieve a base64 encoded version of the image
+            // and assign it to the component's cover property
+
+          };
+          image.src = e2.target.result;
+        };
+      })(f);
+      reader.readAsDataURL(f);
+    }

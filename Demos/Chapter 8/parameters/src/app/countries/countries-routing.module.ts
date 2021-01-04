@@ -1,9 +1,10 @@
-import { CountryListChildrenComponent } from './country-list-children.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CountryListComponent } from './country-list.component';
 import { CountryComponent } from './country.component';
+import { CountryListChildrenComponent } from './country-list-children.component';
 import { CountryChildComponent } from './country-child.component';
+
 
 const routes: Routes = [
   {
@@ -32,4 +33,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CountriesRoutingModule { }
+export class CountriesRoutingModule {
+
+}

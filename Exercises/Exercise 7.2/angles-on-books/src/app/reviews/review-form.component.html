@@ -1,17 +1,18 @@
 <form #reviewForm="ngForm" name="reviewForm" (ngSubmit)="submit()" novalidate class="form-inline">
-  <div class="form-group">
- <label>Review:
-    <input class="form-control" minlength="5" type="text" required name="content" #content="ngModel" [(ngModel)]="review.content"  />
-  </label>
-  <button class="btn btn-primary" type="submit" [disabled]="!reviewForm.form.valid">Add Review</button>
-  </div>
- 
-  <div *ngIf="!(content.valid || content.pristine)">
-    <div *ngIf="content.errors.required" class="alert alert-danger">
-      Review must have content
+    <div class="form-group">
+   <label>Review:
+      <input class="form-control" minlength="5" type="text" required name="content" #content="ngModel" [(ngModel)]="review.content"  />
+    </label>
+    <button class="btn btn-primary" type="submit" [disabled]="!reviewForm.form.valid">Add Review</button>
     </div>
-    <div *ngIf="content.errors.minlength" class="alert alert-danger">
-      Review must be at least 5 characters long
+   
+    <div *ngIf="!(content.valid || content.pristine)">
+      <div *ngIf="content.errors && content.errors.required" class="alert alert-danger">
+        Review must have content
+      </div>
+      <div *ngIf="content.errors && content.errors.minlength" class="alert alert-danger">
+        Review must be at least 5 characters long
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+  

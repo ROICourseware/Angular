@@ -1,15 +1,16 @@
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CountryFormComponent } from './country-form.component';
+
+import { CountriesRoutingModule } from './countries-routing.module';
+import { NoEntryComponent } from './no-entry.component';
+import { CountryListComponent } from './country-list.component';
+import { CountryComponent } from './country.component';
 
 @NgModule({
+  declarations: [NoEntryComponent, CountryListComponent, CountryComponent],
   imports: [
-    
-    FormsModule,
-    CommonModule
-  ],
-  declarations: [CountryFormComponent],
-  exports: [CountryFormComponent]
+    CommonModule,
+    CountriesRoutingModule
+  ]
 })
 export class CountriesModule { }

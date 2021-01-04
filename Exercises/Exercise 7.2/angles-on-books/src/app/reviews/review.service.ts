@@ -8,21 +8,22 @@ export class ReviewService {
 
   constructor() { }
 
-  getReviews(bookId: number) {
+  getReviews(bookId: number): Promise<Review[]> {
     return Promise.resolve(reviews);
   }
 
-  addReview(review: Review) {
+  addReview(review: Review): void {
     reviews.push(review);
   }
 
 }
 
 const reviews: Review[] = [{
-  content: "A towering masterpiece.",
+  content: 'A towering masterpiece.',
   bookId: -1
 }, {
-  content: "I hated it.",
+  content: 'I hated it.',
   bookId: -1
 }];
+
 

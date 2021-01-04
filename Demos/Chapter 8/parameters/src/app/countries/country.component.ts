@@ -8,11 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CountryComponent implements OnInit {
 
-  countryId: number;
+  countryId!: number;
   constructor(private route: ActivatedRoute) {}
-  
-  ngOnInit() {
-      this.countryId = +this.route.snapshot.paramMap.get('id');
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.countryId = +id;
+    }
   }
 
 }

@@ -1,19 +1,20 @@
-import { CountriesModule } from './countries/countries.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CountryFormComponent } from './countries/country-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CountryFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CountriesModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
   selector: '[appIfNot]'
@@ -14,5 +14,4 @@ export class IfNotDirective {
         this.viewContainer.createEmbeddedView(this.tRef);
     }
 }
-
 }

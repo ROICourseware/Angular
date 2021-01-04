@@ -1,30 +1,26 @@
-import { Directive, HostListener, ElementRef, EventEmitter, Output } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Directive({
   selector: '[appDragAndDrop]'
 })
 export class DragAndDropDirective {
 
+  @Output()
+  dropped: EventEmitter<any> = new EventEmitter();
+
   constructor(private el: ElementRef) { }
 
-  @Output() onDropped: EventEmitter<any> = new EventEmitter();
-
-
-  @HostListener('dragover', ['$event']) onDragOver(event: DragEvent) {
+  @HostListener('dragover', ['$event'])
+  onDragOver(event: DragEvent): void {
     event.preventDefault();
     this.el.nativeElement.style = 'border: 1px solid black';
   }
 
-  @HostListener('drop', ['$event']) onDrop(event: DragEvent) {
+  @HostListener('drop', ['$event'])
+  onDrop(event: DragEvent): void {
     event.preventDefault();
     this.el.nativeElement.style = 'border: none';
-    this.onDropped.emit(event);
+    this.dropped.emit(event);
   }
-  
-  @HostListener('dragleave', ['$event']) onDragLeave(event: DragEvent) {
-    event.preventDefault();
-    this.el.nativeElement.style = 'border: none';
-}
-
 
 }

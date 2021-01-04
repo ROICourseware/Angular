@@ -10,14 +10,19 @@ import { ReviewService } from './review.service';
 })
 export class ReviewListComponent implements OnInit {
 
-  reviews: Review[];
-  bookId: number = -1;
+  bookId = -1;
+  reviews: Review[] = [];
 
-  constructor(private route: ActivatedRoute, private reviewService: ReviewService) { }
+  constructor(private route: ActivatedRoute, private reviewService: ReviewService) {}
 
-  ngOnInit() {
-    this.bookId = +this.route.snapshot.paramMap.get('id');
-    this.reviewService.getReviews(this.bookId).then(reviews => this.reviews = reviews);
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+     this.bookId = +id;
+     this.reviewService.getReviews(this.bookId).then(reviews => this.reviews = reviews);
+    }
   }
+
+
 
 }

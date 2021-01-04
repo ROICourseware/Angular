@@ -4,13 +4,12 @@ import { CountryListComponent } from './country-list.component';
 import { NoEntryComponent } from './no-entry.component';
 import { CountriesGuard } from './countries.guard';
 import { CountryComponent } from './country.component';
-import { CountryParentComponent } from './country-parent.component';
 
 
 const routes: Routes = [
   {
     path: 'countries',
-    component: CountryParentComponent
+    component: CountryListComponent
   },
   {
     path: 'noentry',
@@ -31,9 +30,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CountriesRoutingModule { 
-
-
-
+export class CountriesRoutingModule {
 
 }

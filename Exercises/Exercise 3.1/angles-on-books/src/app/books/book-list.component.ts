@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Book } from '../models/book';
 
 @Component({
@@ -8,15 +8,20 @@ import { Book } from '../models/book';
 })
 export class BookListComponent implements OnInit {
 
-  @Input() books: Book[];
+  @Input()
+  books: Book[] = [];
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  addBook(book: Book) {
+  trackBook(i: number, book: Book): number {
+    return book.bookId;
+  }
+
+  addBook(book: Book): void {
     this.books.push(book);
-} 
+  }
 
 }

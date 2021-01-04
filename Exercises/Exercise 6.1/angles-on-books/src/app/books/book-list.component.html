@@ -1,5 +1,5 @@
 <h1>Books</h1>
-<app-book-form (createBook)="addBook($event)"> </app-book-form>
+<app-book-form (createBook)="addBook($event)"></app-book-form>
 <div class="row">
     <div class="col-lg-8 col-sm-offset-1">
         <table class="table table-bordered table-striped">
@@ -11,9 +11,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let book of books; trackBy:trackBook">
-                    <td>
-                        <a [routerLink]="['/reviews/' + book.bookId]"> {{book.title}}</a>
-                        </td>
+                    <td><a [routerLink]="['/reviews/' + book.bookId]"> {{book.title}}</a></td>
                     <td>{{book.author}}</td>
                 </tr>
             </tbody>

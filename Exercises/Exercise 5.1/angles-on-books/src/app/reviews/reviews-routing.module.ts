@@ -7,6 +7,7 @@ const routes: Routes = [{
   component: ReviewListComponent
 }];
 
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

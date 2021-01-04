@@ -8,17 +8,19 @@ import { Review } from '../models/review';
 })
 export class ReviewFormComponent implements OnInit {
 
-  @Input() bookId: number;
-  review: Review;
+  @Input()
+  bookId = 0;
+  review = new Review('', 0);
 
   constructor() { }
 
-  ngOnInit() {
-    this.review = new Review("", this.bookId);
+  ngOnInit(): void {
+    this.review = new Review('', this.bookId);
   }
 
-  submit() { 
+  submit(): void {
     console.log(this.review.content);
-  } 
+  }
+
 
 }

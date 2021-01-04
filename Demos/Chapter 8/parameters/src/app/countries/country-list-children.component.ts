@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CountryService } from './country.service';
 
 @Component({
   selector: 'app-country-list-children',
@@ -7,26 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountryListChildrenComponent implements OnInit {
 
+  countries!: any[];
 
-  countries: any[] = [{
-    countryId: 1,
-    name: "United Kingdom",
-    language: "English"
-}, {
-    countryId: 2,
-    name: "United States of America",
-    language: "English"
-}, {
-    countryId: 3,
-    name: "Germany",
-    language: "German"
-}
-];
+  constructor(private countryService: CountryService) { }
 
-
-  constructor() { }
-  ngOnInit() {
+  ngOnInit(): void {
+    this.countryService.getCountries().then(countries => this.countries = countries);
   }
+
 
   trackCountry(i: number, country: any): number {
     return country.id;
