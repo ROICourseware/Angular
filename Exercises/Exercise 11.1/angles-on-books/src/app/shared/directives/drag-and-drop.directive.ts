@@ -16,6 +16,12 @@ export class DragAndDropDirective {
     this.el.nativeElement.style = 'border: 1px solid black';
   }
 
+  @HostListener('dragleave', ['$event'])
+  onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+    this.el.nativeElement.style = 'border: none';
+  }
+
   @HostListener('drop', ['$event'])
   onDrop(event: DragEvent): void {
     event.preventDefault();
