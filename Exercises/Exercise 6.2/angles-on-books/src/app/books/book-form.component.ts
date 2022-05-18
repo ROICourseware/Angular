@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Book } from '../models/book';
-import {FormGroup, FormControl, Validators, FormBuilder, AbstractControl} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -10,25 +10,33 @@ import {FormGroup, FormControl, Validators, FormBuilder, AbstractControl} from '
 })
 export class BookFormComponent implements OnInit {
 
-  bookForm: FormGroup = this.formBuilder.group({
-    title: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9 ]*$')])],
-    author: ['', Validators.required]
-  });
-  @Output()
-  createBook  = new EventEmitter();
+  bookForm!: FormGroup; 
+  @Output() createBook = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor() { }
 
   ngOnInit(): void {
+    this.bookForm = new FormGroup({
+      title: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern('^[a-zA-Z0-9 ]*$')
+      ]),
+      author: new FormControl('', Validators.required)
+    });
   }
 
   add(): void {
     const form = this.bookForm.value;
-    this.createBook.emit(
-      new Book(form.title,
-               form.author,
-               '', -1));
+    this.createBook.emit(new Book(form.title,
+      form.author,
+      '',
+      -1));
     this.bookForm.reset();
   }
+
+  get title() { return this.bookForm.get('title')!; }
+
+  get author() { return this.bookForm.get('author')!; }
 
 }

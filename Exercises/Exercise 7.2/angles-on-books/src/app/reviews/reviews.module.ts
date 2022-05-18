@@ -1,4 +1,3 @@
-import { ReviewService } from './review.service';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +13,6 @@ import { ReviewFormComponent } from './review-form.component';
     CommonModule,
     ReviewsRoutingModule,
     FormsModule
-  ],
-  providers: [ReviewService]
+  ]
 })
 export class ReviewsModule { }

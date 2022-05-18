@@ -6,7 +6,7 @@ import { ReviewListComponent } from './review-list.component';
 
 
 @NgModule({
-  declarations: [ReviewListComponent, ReviewFormComponent],
+  declarations: [ReviewListComponent],
   imports: [
     CommonModule,
     ReviewsRoutingModule

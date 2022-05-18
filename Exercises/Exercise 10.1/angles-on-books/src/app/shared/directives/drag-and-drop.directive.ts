@@ -5,8 +5,7 @@ import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angu
 })
 export class DragAndDropDirective {
 
-  @Output()
-  dropped: EventEmitter<any> = new EventEmitter();
+  @Output() dropped: EventEmitter<any> = new EventEmitter();
 
   constructor(private el: ElementRef) { }
 

@@ -1,6 +1,10 @@
+import { Component, Input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+
+@Component({selector: 'app-book-list', template: ''}) class BookListStubComponent {  @Input() books: any }
+
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -9,7 +13,7 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent, BookListStubComponent
       ],
     }).compileComponents();
   });
@@ -29,7 +33,7 @@ describe('AppComponent', () => {
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to Angles On Books');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain('Angles On Books');
   });
 });

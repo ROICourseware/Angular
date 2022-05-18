@@ -8,8 +8,7 @@ import { Book } from '../models/book';
 })
 export class BookListComponent implements OnInit {
 
-  @Input()
-  books: Book[] = [];
+  @Input() books: Book[] = [];
 
   constructor() { }
 

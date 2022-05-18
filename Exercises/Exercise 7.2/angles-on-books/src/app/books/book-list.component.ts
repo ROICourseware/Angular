@@ -1,6 +1,7 @@
 import { BookService } from './book.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../models/book';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-book-list',
@@ -9,15 +10,34 @@ import { Book } from '../models/book';
 })
 export class BookListComponent implements OnInit {
 
-  books: Book[] = [];
+  books!: Book[];
   errorMessage = '';
+
+  constructor(private bookService: BookService) { }
+
+  showError(error: any): void {
+    this.errorMessage = error.message ? error.message : 
+                        error.status ? `${error.status} - ${error.statusText}` :
+                        'Server error';
+  }
 
   getBooks(): void {
     this.bookService.getBooks()
-      .then(books => this.books = books).catch(error => this.errorMessage = error);
+      .pipe(catchError(err => {
+        this.showError(err);
+        return of([]);
+      }))
+      .subscribe(books => this.books = books);
   }
 
-  constructor(private bookService: BookService) { }
+  addBook(book: Book): void {
+    this.bookService.addBook(book)
+      .pipe(catchError(err => {
+        this.showError(err);
+        return of({});
+      }))
+      .subscribe(() => this.getBooks());
+  }
 
   ngOnInit(): void {
     this.getBooks();
@@ -27,10 +47,6 @@ export class BookListComponent implements OnInit {
     return book.bookId;
   }
 
-  addBook(book: Book): void {
-    this.bookService.addBook(book).then(() => {
-      this.getBooks();
-     }).catch(error => this.errorMessage = error);
-  }
+
 
 }

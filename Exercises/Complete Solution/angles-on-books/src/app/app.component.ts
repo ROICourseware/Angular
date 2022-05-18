@@ -14,7 +14,7 @@ export class AppComponent {
   prepareRouteAnimation(outlet: RouterOutlet): void {
     return outlet &&
      outlet.activatedRouteData &&
-     outlet.activatedRouteData.animation;
+     outlet.activatedRouteData['animation'];
 }
 
 

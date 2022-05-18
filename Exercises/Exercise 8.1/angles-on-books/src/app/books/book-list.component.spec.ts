@@ -1,20 +1,21 @@
-import { DebugElement } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { Book } from '../models/book';
 
 import { BookListComponent } from './book-list.component';
+
+@Component({selector: 'app-book-form', template: ''}) class BookFormStubComponent {}
+
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
   let fixture: ComponentFixture<BookListComponent>;
   let books: any;
   let elm: HTMLElement;
-  let dbElm: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookListComponent ]
+      declarations: [ BookListComponent, BookFormStubComponent ]
     })
     .compileComponents();
   });
@@ -32,13 +33,13 @@ describe('BookListComponent', () => {
       author: 'J R R Tolkien',
       bookId: 2
     }];
-    dbElm = fixture.debugElement;
-    elm = dbElm.nativeElement;
+    elm = fixture.nativeElement;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 
   it ('should add a book to the array when addBook called', () => {
     component.books = books;
@@ -56,8 +57,8 @@ describe('BookListComponent', () => {
   it ('should have LOTR as text of first td element', () => {
     component.books = books;
     fixture.detectChanges();
-    const td = dbElm.query(By.css('td')).nativeElement;
-    expect(td.textContent).toEqual('The Lord Of The Rings');
+    const td = elm.querySelector('td');
+    expect(td?.textContent).toEqual('The Lord Of The Rings');
   });
 
 });

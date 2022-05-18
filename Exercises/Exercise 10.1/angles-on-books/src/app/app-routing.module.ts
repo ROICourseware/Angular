@@ -6,11 +6,18 @@ import { BookListComponent } from './books/book-list.component';
 const routes: Routes = [
   {
       path: '',
-      component: BookListComponent
+      component: BookListComponent,
+      data: { animation: 'bookPage'}
   },
   {
       path: 'about',
-      component: AboutComponent
+      component: AboutComponent,
+      data: { animation: 'aboutPage'}
+  },
+  {
+    path: '**',
+    component: BookListComponent,
+    data: { animation: 'defaultPage'}
   }];
 
 

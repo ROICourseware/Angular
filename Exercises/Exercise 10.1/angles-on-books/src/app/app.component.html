@@ -9,6 +9,7 @@
     </li>
   </ul>
 </nav>
-
-<router-outlet></router-outlet> 
+<div [@routeAnimations]="prepareRouteAnimation(outlet)" >
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
 

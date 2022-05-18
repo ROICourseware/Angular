@@ -8,11 +8,11 @@ export class BookService {
 
   constructor() { }
 
-  getBooks(): Promise<Book[]> {
-    return Promise.resolve(books);
+  getBooks(): Book[] {
+    return books;
   }
 
-  addBook(book: Book): void {
+  addBook(book: Book) {
     books.push(book);
   }
 

@@ -8,8 +8,8 @@ export class ReviewService {
 
   constructor() { }
 
-  getReviews(bookId: number): Promise<Review[]> {
-    return Promise.resolve(reviews);
+  getReviews(bookId: number): Review[] {
+    return reviews;
   }
 
   addReview(review: Review): void {

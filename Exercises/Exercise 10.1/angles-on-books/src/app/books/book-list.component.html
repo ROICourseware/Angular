@@ -17,12 +17,11 @@
                 <tr>
                     <td colspan="3">
                        <label>Search by title:
-                          <input name="searchField" 
-                                  [formControl]="searchField" />
+                          <input name="searchField" [formControl]="searchField" />
                          </label>
                      </td>
-                 </tr>                 
-                <tr *ngFor="let book of books$ | async; trackBy:trackBook">
+                 </tr> 
+                <tr *ngFor="let book of books$ | async; trackBy:trackBook"  [@slideUp]>
                     <td><a [routerLink]="['/reviews/' + book.bookId]"> {{book.title}}</a></td>
                     <td>{{book.author}}</td>
                     <td><img  src="{{book.cover | noImage}}"   alt="{{book.title + ' book cover'}}" /></td>

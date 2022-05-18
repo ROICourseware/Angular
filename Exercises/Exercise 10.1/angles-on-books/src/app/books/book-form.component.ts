@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Book } from '../models/book';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -10,19 +10,36 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class BookFormComponent implements OnInit {
 
-  bookForm: FormGroup = this.formBuilder.group({
-    title: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9 ]*$')])],
-    author: ['', Validators.required]
-  });
-  @Output()
-  createBook = new EventEmitter();
+  bookForm!: FormGroup; 
+  @Output() createBook = new EventEmitter();
   cover = '';
 
-  constructor(private formBuilder: FormBuilder) { }
-
+  constructor() { }
 
   ngOnInit(): void {
+    this.bookForm = new FormGroup({
+      title: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern('^[a-zA-Z0-9 ]*$')
+      ]),
+      author: new FormControl('', Validators.required)
+    });
   }
+
+  add(): void {
+    const form = this.bookForm.value;
+    this.createBook.emit(new Book(form.title,
+      form.author,
+      this.cover,
+      -1));
+    this.bookForm.reset();
+    this.cover = '';
+  }
+
+  get title() { return this.bookForm.get('title')!; }
+
+  get author() { return this.bookForm.get('author')!; }
 
   onDrop(e: any): void {
     // step 1: alias the component this to a variable comp
@@ -70,16 +87,6 @@ export class BookFormComponent implements OnInit {
       reader.readAsDataURL(f);
     }
 
-  }
-
-  add(): void {
-    const form = this.bookForm.value;
-    this.createBook.emit(
-      new Book(form.title,
-        form.author,
-        this.cover, -1));
-    this.bookForm.reset();
-    this.cover = '';
   }
 
 }

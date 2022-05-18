@@ -1,5 +1,5 @@
 import { BookService } from './book.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../models/book';
 
 @Component({
@@ -9,14 +9,13 @@ import { Book } from '../models/book';
 })
 export class BookListComponent implements OnInit {
 
-  books: Book[] = [];
-
-  getBooks(): void {
-    this.bookService.getBooks()
-      .then(books => this.books = books);
-  }
+  books!: Book[];
 
   constructor(private bookService: BookService) { }
+
+  getBooks(): void {
+    this.books = this.bookService.getBooks();
+  }
 
   ngOnInit(): void {
     this.getBooks();

@@ -1,17 +1,20 @@
-<form novalidate [formGroup]="bookForm" 
-		(ngSubmit)="add()">
-	Title:<input type="text" formControlName="title" />
+<form [formGroup]="bookForm" (ngSubmit)="add()">
+    Title:<input type="text" formControlName="title" />
     Author:<input type="text" formControlName="author" />
     <img  src="{{cover | noImage}}"  appDragAndDrop (dropped)="onDrop($event)" />
-  <button type="submit" [disabled]="!bookForm.valid">
+    <button type="submit" [disabled]="bookForm.invalid">
         Add Book</button>
-        <div *ngIf="bookForm.controls.title.hasError('required') && !bookForm.controls.title.pristine" class="alert alert-danger">Title is required</div>
-        <div *ngIf="bookForm.controls.title.hasError('minlength') && !bookForm.controls.title.pristine" class="alert alert-danger">
-            Title must be at least 3 characters 
-        </div> 
-        <div *ngIf="bookForm.controls.title.hasError('pattern') && !bookForm.controls.title.pristine" class="alert alert-danger">
+    <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+        <div *ngIf="title.errors?.['required']">
+            Title is required
+        </div>
+        <div *ngIf="title.errors?.['minlength']">
+            Title must be at least 3 characters
+        </div>
+        <div *ngIf="title.errors?.['pattern']">
             Only letters and numbers are allowed
-        </div> 
-      
-        <div *ngIf="bookForm.controls.author.hasError('required') && !bookForm.controls.author.pristine" class="alert alert-danger">Author is required</div>
+        </div>
+    </div>
+    <div *ngIf="author.errors?.['required'] && !author.pristine" class="alert alert-danger">Author is required</div>
+
 </form>

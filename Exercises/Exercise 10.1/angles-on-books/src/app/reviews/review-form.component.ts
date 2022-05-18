@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Review } from '../models/review';
 
 @Component({
@@ -8,11 +8,9 @@ import { Review } from '../models/review';
 })
 export class ReviewFormComponent implements OnInit {
 
-  @Output()
-  createReview = new EventEmitter();
-  @Input()
-  bookId = 0;
-  review = new Review('', 0);
+  @Input() bookId = 0;
+  review!: Review;
+  @Output() createReview = new EventEmitter();
 
   constructor() { }
 
