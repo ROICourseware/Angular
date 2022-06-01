@@ -14,7 +14,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let book of books; trackBy:trackBook">
+                <tr>
+                    <td colspan="3">
+                       <label>Search by title:
+                          <input name="searchField" [formControl]="searchField" />
+                         </label>
+                     </td>
+                 </tr> 
+                <tr *ngFor="let book of books$ | async; trackBy:trackBook">
                     <td><a [routerLink]="['/reviews/' + book.bookId]"> {{book.title}}</a></td>
                     <td>{{book.author}}</td>
                     <td><img  src="{{book.cover | noImage}}"   alt="{{book.title + ' book cover'}}" /></td>

@@ -1,17 +1,14 @@
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { BookFormComponent } from './book-form.component';
+import { BookListComponent } from './book-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookListComponent } from './book-list.component';
-import { BookFormComponent } from './book-form.component';
-import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [
-    BookListComponent,
-    BookFormComponent
-  ],
+  declarations: [BookListComponent, BookFormComponent],
   imports: [
     CommonModule,
     FormsModule,

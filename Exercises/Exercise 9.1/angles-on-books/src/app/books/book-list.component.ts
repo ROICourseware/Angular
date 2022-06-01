@@ -1,9 +1,8 @@
 import { BookService } from './book.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Book } from '../models/book';
+import { catchError, debounceTime, Observable, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { catchError, debounceTime } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-book-list',
@@ -14,32 +13,44 @@ export class BookListComponent implements OnInit, OnDestroy {
 
   books$!: Observable<Book[]>;
   errorMessage = '';
-  sub: any;
   searchField: FormControl = new FormControl();
-
-  getBooks(term: string = ''): void {
-    this.books$ = this.bookService.getBooksByTitle(term)
-    .pipe(
-      catchError(error => {
-          if (error.error instanceof ErrorEvent) {
-              this.errorMessage = `Error: ${error.error.message}`;
-          } else {
-              this.errorMessage = `Error: ${error.message}`;
-          }
-          return of([]);
-      })
-    );
-  }
+  sub: any;
 
   constructor(private bookService: BookService) { }
+
+  showError(error: any): void {
+    this.errorMessage = error.message ? 
+                        error.message : 
+                        error.status ? 
+                          `${error.status} - ${error.statusText}` :
+                          'Server error';
+  }
+
+  getBooks(term: any = ''): void {
+    this.books$ = this.bookService.getBooks(term)
+      .pipe(catchError(err => {
+        this.showError(err);
+        return of([]);
+      }));
+  }
+
+  addBook(book: Book): void {
+    this.bookService.addBook(book)
+      .pipe(catchError(err => {
+        this.showError(err);
+        return of({});
+      }))
+      .subscribe(() => this.getBooks());
+  }
 
   ngOnInit(): void {
     this.getBooks();
     this.sub = this.searchField.valueChanges.pipe(
-      debounceTime(500)).subscribe(term => {
-        this.getBooks(term);
-      },
-      err => this.errorMessage = err);
+      debounceTime(500))
+      .subscribe({
+        next: this.getBooks.bind(this),
+        error: this.showError.bind(this)
+     });
   }
 
   ngOnDestroy(): void {
@@ -50,10 +61,6 @@ export class BookListComponent implements OnInit, OnDestroy {
     return book.bookId;
   }
 
-  addBook(book: Book): void {
-    this.bookService.addBook(book).then(() => {
-      this.getBooks();
-     }).catch(error => this.errorMessage = error);
-  }
+
 
 }

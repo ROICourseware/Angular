@@ -5,22 +5,26 @@ import { BookListComponent } from './books/book-list.component';
 
 const routes: Routes = [
   {
-    path: '',
+      path: '',
+      component: BookListComponent,
+      data: { animation: 'bookPage'}
+  },
+  {
+      path: 'about',
+      component: AboutComponent,
+      data: { animation: 'aboutPage'}
+  },
+  {
+    path: 'reviews',
+    loadChildren: () => import('./reviews/reviews.module')
+                        .then(m => m.ReviewsModule),
+    data: { animation: 'reviewPage'}
+  },
+  {
+    path: '**',
     component: BookListComponent,
-    data: { animation: 'bookPage'}
-},
-{
-    path: 'about',
-    component: AboutComponent,
-    data: { animation: 'aboutPage'}
-},
-{
-  path: 'reviews',
-  loadChildren: () => import('./reviews/reviews.module')
-                      .then(m => m.ReviewsModule),
-  data: { animation: 'reviewPage'}
-}
-];
+    data: { animation: 'defaultPage'}
+  }];
 
 
 @NgModule({

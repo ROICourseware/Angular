@@ -4,7 +4,8 @@ import { ReviewListComponent } from './review-list.component';
 
 const routes: Routes = [{
   path: 'reviews/:id',
-  component: ReviewListComponent
+  component: ReviewListComponent,
+  data: { animation: 'reviewPage'}
 }];
 
 

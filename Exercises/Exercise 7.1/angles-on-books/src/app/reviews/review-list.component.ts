@@ -1,7 +1,7 @@
+import { ReviewService } from './review.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Review } from '../models/review';
-import { ReviewService } from './review.service';
 
 @Component({
   selector: 'app-review-list',
@@ -11,7 +11,11 @@ import { ReviewService } from './review.service';
 export class ReviewListComponent implements OnInit {
 
   bookId = -1;
-  reviews: Review[] = [];
+  reviews!: Review[];
+
+  getReviews(): void {
+    this.reviews = this.reviewService.getReviews(this.bookId);
+  }
 
   constructor(private route: ActivatedRoute, private reviewService: ReviewService) {}
 
@@ -19,10 +23,8 @@ export class ReviewListComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
      this.bookId = +id;
-     this.reviewService.getReviews(this.bookId).then(reviews => this.reviews = reviews);
+     this.getReviews();
     }
   }
-
-
 
 }

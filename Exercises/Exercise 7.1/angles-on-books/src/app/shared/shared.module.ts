@@ -5,10 +5,14 @@ import { NoImagePipe } from './pipes/no-image.pipe';
 
 
 @NgModule({
-  declarations: [NoImagePipe],
+  declarations: [
+    NoImagePipe
+  ],
   imports: [
     CommonModule
   ],
-  exports: [NoImagePipe]
+  exports: [ 
+    NoImagePipe
+  ]
 })
 export class SharedModule { }
