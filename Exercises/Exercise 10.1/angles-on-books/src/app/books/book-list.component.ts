@@ -3,13 +3,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Book } from '../models/book';
 import { catchError, debounceTime, Observable, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { slideUp } from '../animations';
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.css'],
-  animations: [ slideUp ]
+  styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit, OnDestroy {
 
