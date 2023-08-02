@@ -1,6 +1,10 @@
 <form [formGroup]="bookForm" (ngSubmit)="add()">
-    Title:<input type="text" formControlName="title" />
+    <label class="control-label">
+       Title:<input type="text" formControlName="title" />
+    </label>
+   <label class="control-label">
     Author:<input type="text" formControlName="author" />
+    </label>
     <img  src="{{cover | noImage}}"  appDragAndDrop (dropped)="onDrop($event)" />
     <button type="submit" [disabled]="bookForm.invalid">
         Add Book</button>
