@@ -1,19 +1,14 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import {  inject } from '@angular/core';
+import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CountriesGuard implements CanActivate {
+export const canActivate: CanActivateFn = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
 
-  constructor(private router: Router) {}
-
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      console.log('canActivate called and redirecting...');
-      this.router.navigate(['/about']);
-      return false;
-  }
-}
+  const router = inject(Router);
+  console.log('canActivate called and redirecting...');
+  router.navigate(['/about']);
+  return false;
+  
+};
