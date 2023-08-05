@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Book } from '../models/book';
 
 import { BookListComponent } from './book-list.component';
+// import { BooksModule } from './books.module';
+import { Book } from '../models/book';
+import { Component } from '@angular/core';
+
 
 @Component({selector: 'app-book-form', template: ''}) class BookFormStubComponent {}
-
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -15,7 +16,8 @@ describe('BookListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookListComponent, BookFormStubComponent ]
+      declarations: [ BookListComponent, BookFormStubComponent ],
+      // imports: [BooksModule]
     })
     .compileComponents();
   });
@@ -40,7 +42,6 @@ describe('BookListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
   it ('should add a book to the array when addBook called', () => {
     component.books = books;
     component.addBook(new Book('title', 'author', '', -1));
@@ -53,6 +54,7 @@ describe('BookListComponent', () => {
     const trs = elm.querySelectorAll('tr');
     expect(trs.length).toBe(3);
   });
+
 
   it ('should have LOTR as text of first td element', () => {
     component.books = books;
