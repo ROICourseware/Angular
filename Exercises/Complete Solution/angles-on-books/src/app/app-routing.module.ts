@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutComponent } from './about.component';
 import { BookListComponent } from './books/book-list.component';
 
 const routes: Routes = [
@@ -11,8 +10,15 @@ const routes: Routes = [
   },
   {
       path: 'about',
-      component: AboutComponent,
+      loadComponent: () => import('./about.component')
+                           .then(m => m.AboutComponent),
       data: { animation: 'aboutPage'}
+  },
+  {
+      path: 'faq',
+      loadComponent: () => import('./faq/faq.component')
+                           .then(m => m.FaqComponent),
+      data: { animation: 'faqPage'}
   },
   {
     path: 'reviews',

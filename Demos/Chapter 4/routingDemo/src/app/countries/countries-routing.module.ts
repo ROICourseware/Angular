@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CountryListComponent } from './country-list.component';
 import { NoEntryComponent } from './no-entry.component';
-import { CountriesGuard } from './countries.guard';
+import { canActivate } from './countries.guard';
 import { CountryComponent } from './country.component';
 
 
@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'noentry',
     component: NoEntryComponent,
-    canActivate: [CountriesGuard]
+    canActivate: [canActivate]
   },
   {
     path: 'country/:id/:name',

@@ -7,9 +7,11 @@
     <li  class="nav-item">
       <a routerLink="/about" class="nav-link"  routerLinkActive="active">about</a>
     </li>
+    <li  class="nav-item">
+      <a routerLink="/faq" class="nav-link"  routerLinkActive="active">faq</a>
+    </li>
   </ul>
 </nav>
-<div [@routeAnimations]="prepareRouteAnimation(outlet)" >
-  <router-outlet #outlet="outlet"></router-outlet>
-</div>
+
+<router-outlet></router-outlet> 
 

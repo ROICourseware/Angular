@@ -1,4 +1,4 @@
-<h1>Reviews for {{book?.title}}</h1>
+<h1>Reviews for {{book.title}}</h1>
 <app-review-form (createReview)="addReview($event)" [bookId]="bookId"></app-review-form>
 <div *ngIf="errorMessage" class="alert alert-danger">
   Sorry, there's been an error communicating with the server: {{errorMessage}}
