@@ -1,0 +1,92 @@
+<div class="row">
+    <h2>Angles on Books</h2>
+  </div>
+  <div class="row">
+    Where you can experiment with pipes.
+  </div>
+  <div>
+    <h2>Without pipes:</h2>
+    <dl>
+    <dt>currency</dt>
+    <dd>{{ demo.myLargeNumber  }}</dd>
+    <dt>Date</dt>
+    <dd>{{ demo.myDate }}</dd>
+    <dt>text wanted in lower case </dt>
+    <dd>{{ demo.upperCaseText  }}</dd>
+    <dt>Percent</dt>
+    <dd>{{ demo.myNumber  }}</dd>
+    <dt>text wanted in upper case</dt>
+    <dd>{{ demo.lowerCaseText  }}</dd>
+    </dl>
+  </div>
+  <div>
+    <h2>Built-in pipes:</h2>
+    <dl>
+    <dt>CurrencyPipe</dt>
+    <dd>{{ demo.myLargeNumber | currency }}</dd>
+    <dt>DatePipe</dt>
+    <dd>{{ demo.myDate | date }}</dd>
+    <dt>LowerCasePipe</dt>
+    <dd>{{ demo.upperCaseText | lowercase }}</dd>
+    <dt>Percent Pipe</dt>
+    <dd>{{ demo.myNumber | percent }}</dd>
+    <dt>UpperCasePipe</dt>
+    <dd>{{ demo.lowerCaseText | uppercase }}</dd>
+    </dl>
+  </div>
+  <div>
+    <h2>Built-in pipes with arguments:</h2>
+    <dl>
+    <dt>CurrencyPipe USD with $ symbol and 2 digits</dt>
+    <dd>{{ demo.myLargeNumber | currency:'USD':true:'.0-0' }}</dd>
+    <dt>DatePipe with 'fullDate' formatting string</dt>
+    <dd>{{ demo.myDate | date:'fullDate' }}</dd>
+    <dt>PercentPipe to 2 digits</dt>
+    <dd>{{ demo.myNumber | percent:'.2-2' }}</dd>
+    </dl>
+  </div>
+  <div>
+    <h2>Chained Pipes:</h2>
+    <dl>
+    <dt>DatePipe with 'fullDate' and uppercase</dt>
+    <dd>{{ demo.myDate | date:'fullDate' | uppercase }}</dd>
+    </dl>
+  </div>
+  <div>
+    <h2>DatePipe named arguments:</h2>
+    <dl>
+    <dt>'medium' formatting string</dt>
+    <dd>{{ demo.myDate | date:'medium' }}</dd>
+    <dt>'short' formatting string</dt>
+    <dd>{{ demo.myDate | date:'short' }}</dd>
+    <dt>'fullDate' formatting string</dt>
+    <dd>{{ demo.myDate | date:'fullDate' }}</dd>
+    <dt>'longDate' formatting string</dt>
+    <dd>{{ demo.myDate | date:'longDate' }}</dd>
+    <dt>'mediumDate' formatting string</dt>
+    <dd>{{ demo.myDate | date:'mediumDate' }}</dd>    
+    <dt>'shortDate' formatting string</dt>
+    <dd>{{ demo.myDate | date:'shortDate' }}</dd> 
+    <dt>'mediumTime' formatting string</dt>
+    <dd>{{ demo.myDate | date:'mediumTime' }}</dd> 
+    <dt>'shortTime' formatting string</dt>
+    <dd>{{ demo.myDate | date:'shortTime' }}</dd>     
+    </dl>
+  </div>
+  <div>
+    <h2>DatePipe with formatting arguments:</h2>
+    <dl>
+      <dt>'y MMMM d' formatting string</dt>
+      <dd>{{ demo.myDate | date:'y MMMM d' }}</dd>
+      <dt>'y MMM d ms' formatting string</dt>
+      <dd>{{ demo.myDate | date:'y MMM d ms' }}</dd>
+      </dl>  
+  </div>
+  <div>
+    <h2>Custom Pipes:</h2>
+    <dl>
+    <dt>ReversePipe</dt>
+    <dd>{{ demo.lowerCaseText | reverse }}</dd>
+    </dl>
+  </div>
+        
