@@ -1,0 +1,17 @@
+<h1>Reviews for {{bookId}}</h1>
+<div class="row">
+    <div class="col-lg-8 col-sm-offset-1">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let review of reviews">
+            <td>{{review.content}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
