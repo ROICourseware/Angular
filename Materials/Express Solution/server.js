@@ -31,13 +31,13 @@ process.on('uncaughtException', function (err) {
 // JSON API
 var baseUrl = '/api/bookreactions/';
 
-app.get(baseUrl + 'Books', api.books);
-app.get(baseUrl + 'Books/:bookId', api.book);
-app.get(baseUrl + 'BooksByTitle/:title', api.booksByTitle);
-app.get(baseUrl + 'Reviews/:bookId', api.reviews);
+app.get(baseUrl + 'books', api.books);
+app.get(baseUrl + 'books/:bookId', api.book);
+app.get(baseUrl + 'booksbytitle/:title', api.booksByTitle);
+app.get(baseUrl + 'reviews/:bookId', api.reviews);
 
-app.post(baseUrl + 'Reviews', api.addReview);
-app.post(baseUrl + 'Books', api.addBook);
+app.post(baseUrl + 'reviews', api.addReview);
+app.post(baseUrl + 'books', api.addBook);
 
 
 // Start

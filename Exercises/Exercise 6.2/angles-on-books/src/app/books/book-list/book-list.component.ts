@@ -3,11 +3,12 @@ import { Book } from '../../models/book';
 import { CommonModule } from '@angular/common';
 import { BookFormComponent } from "../book-form/book-form.component";
 import { RouterLink } from '@angular/router';
+import { NoImagePipe } from '../../shared/no-image.pipe';
 
 @Component({
   selector: 'app-book-list',
   standalone: true,
-  imports: [CommonModule, BookFormComponent, RouterLink],
+  imports: [CommonModule, BookFormComponent, RouterLink, NoImagePipe],
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.css'
 })
