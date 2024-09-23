@@ -1,0 +1,17 @@
+<form #reviewForm="ngForm" name="reviewForm" (ngSubmit)="submit()" class="form-inline">
+  <div class="form-group">
+ <label>Review:
+    <input class="form-control" minlength="5" type="text" required name="content" #content="ngModel" [(ngModel)]="review.content"  />
+  </label>
+  <button class="btn btn-primary" type="submit" [disabled]="!reviewForm.form.valid">Add Review</button>
+  </div>
+ 
+  <div *ngIf="!(content.valid || content.pristine)" class="alert alert-danger">
+    <div *ngIf="content.errors?.['required']">
+      Review must have content
+    </div>
+    <div *ngIf="content.errors?.['minlength']">
+      Review must be at least 5 characters long
+    </div>
+  </div>
+</form>

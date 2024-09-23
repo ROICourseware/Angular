@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { routeChange } from './animations';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { routeChange } from './shared/animations';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrl: './app.component.css',
   animations: [ routeChange ]
 })
 export class AppComponent {
@@ -16,6 +18,5 @@ export class AppComponent {
      outlet.activatedRouteData &&
      outlet.activatedRouteData['animation'];
 }
-
 
 }

@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "angular-in-memory-web-api": "^0.18.0"
+  }
+}
